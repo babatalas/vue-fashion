@@ -38,22 +38,101 @@ The API is RESTful and arranged around resources. All requests must be made with
 
 Typically, the first request you make should be to acquire user details. This will confirm that your access token is valid, and give you a user id that you will need for subsequent requests.
 
-### 3.1. Root
+### 3.1. Special endpoint
+
+#### Create a new user
+
+Make request to this endpoint to create a new user.
+
+```
+POST /register
+```
+
+Example request:
+
+```
+POST /register HTTP/1.1
+Host: http://localhost:3000
+Content-Type: application/json
+Accept: application/json
+Accept-Charset: utf-8
+
+{
+  "firstName": "User",
+  "lastName": "Pertama"
+  "email": "demo@demo.io",
+  "password": "your_password"
+}
+```
+
+With the following fields:
+
+| Parameter   | Type    | Required? | Description                         |
+| ------------|---------|-----------|-------------------------------------|
+| firstName   | string  | required  | The user's first name.              |
+| lastName    | string  | optional  | The user's last name.               |
+| email       | string  | required  | The user's email.                   |
+| password    | string  | required  | The user's password.                |
+
+The response is a User object within a data envelope.
+
+Example response:
+
+```
+HTTP/1.1 201 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "data": {
+    "id": 23,
+    "email": "demo@demo.io",
+    "firstName": "User",
+    "lastName": "Pertama",
+  }
+}
+```
+
+Where a User object is:
+
+| Field        | Type    | Description                                                               |
+| -------------|---------|---------------------------------------------------------------------------|
+| id           | integer | A unique identifier for the user.                                         |
+| firstName    | string  | The user’s first name.                                                    |
+| lastName     | string  | The user’s last name.                                                     |
+| email        | string  | The user’s email.                                                         |
+
+Possible errors:
+
+| Error code                | Status | Error Code           | Description                                      |
+| --------------------------|--------|----------------------|--------------------------------------------------|
+| 400 Bad Request           | fail   | VALIDATION_ERROR     | Required fields were invalid or not specified.   |
+| 500 Internal Server Error | error  | UNKNOWN_ERROR        | The connection to database is failed.            |
+
+Example error response:
+
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+
+{
+  "status": "fail",
+  "errorCode": "EMAIL_ALREADY_USED"
+}
+```
 
 #### Getting the authenticated user’s details via login endpoint
 
 Returns details of the user who has login detail to the application.
 
 ```
-GET /login
+POST /login
 ```
 
 Example request:
 
 ```
-GET /login HTTP/1.1
+POST /login HTTP/1.1
 Host: http://localhost:3000
-access_toke: 181d415f34379af07b2c11d144dfbe35d
 Content-Type: application/json
 Accept: application/json
 Accept-Charset: utf-8
@@ -124,13 +203,13 @@ Content-Type: application/json; charset=utf-8
 Returns details of the user who has access_token from the application. This endpoint is usually used to auto signin a user which already signin in the past and still have access_token in their browser.
 
 ```
-GET /me
+POST /me
 ```
 
 Example request:
 
 ```
-GET /me HTTP/1.1
+POST /me HTTP/1.1
 Host: http://localhost:3000
 access_toke: 181d415f34379af07b2c11d144dfbe35d
 Content-Type: application/json
@@ -339,7 +418,7 @@ Possible errors:
 | --------------------------|--------|----------------------|------------------------------------------------------------------------|
 | 400 Bad Request           | fail   | VALIDATION_ERROR     | Required fields were invalid, not specified.                           |
 | 401 Unauthorized          | fail   | INVALID_TOKEN        | The `access_tken` is invalid or the user's account has been deleted.   |
-| 403 Forbidden             | fail   | UNOUTHORIZED_USER    | The user does not have permission to input or insert data to database. |
+| 403 Forbidden             | fail   | NOT_AUTHORIZED       | The user does not have permission to input or insert data to database. |
 | 500 Internal Server Error | error  | UNKNOWN_ERROR        | The connection to database is failed.                                  |
 
 #### Fecthing single product detail
@@ -396,7 +475,7 @@ Possible errors:
 | Error code                | Status | Error Code                  | Description                                                                                |
 | --------------------------|--------|-----------------------------|--------------------------------------------------------------------------------------------|
 | 400 Bad Request           | fail   | INVALID_TEXT_REPRESENTATION | Required fields were invalid type.                                                         |
-| 404 Forbidden             | fail   | PRODUCT_NOT_FOUND           | Required fields is valid type but the item with the requested id is not found in database. |
+| 404 Not Found             | fail   | PRODUCT_NOT_FOUND           | Required fields is valid type but the item with the requested id is not found in database. |
 | 500 Internal Server Error | error  | UNKNOWN_ERROR               | The connection to database is failed.                                                      |
 
 #### Modifying single product data

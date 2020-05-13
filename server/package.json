@@ -1,0 +1,28 @@
+{
+  "name": "eko8-ecommerce-cms",
+  "version": "1.0.0",
+  "description": "This document contains the documentation for [Eko8 Ecommerce CMS](https://eko8-ecommerce-cms.herokuapp.com/)’s API.",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "google-auth-library": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.1.0",
+    "sequelize": "^5.21.8"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "jest": "^26.0.1",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "generate": "set NODE_ENV=test sequelize db:create && set NODE_ENV=test sequelize db:migrate && set NODE_ENV=test sequelize db:seed --seed 20200512192905-populate-role-for-User && set NODE_ENV=test sequelize db:seed --seed 20200512193005-create-the-first-user-admin",
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
+    "win_dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
