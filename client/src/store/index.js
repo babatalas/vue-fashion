@@ -23,6 +23,15 @@ export default new Vuex.Store({
     addProduct(state, payload) {
       state.products.push(payload);
     },
+    updateProduct(state, payload) {
+      const products = state.products.filter((p) => p.id !== payload.id);
+      state.products = products;
+      state.products.push(payload);
+    },
+    deleteProduct(state, payload) {
+      const products = state.products.filter((p) => p.id !== payload.id);
+      state.products = products;
+    },
     showAlert(state, payload) {
       console.log(state.alert);
       state.alert = payload;
@@ -67,6 +76,45 @@ export default new Vuex.Store({
         })
           .then(({ data }) => {
             context.commit('addProduct', data.data);
+            resolve(data.data);
+          })
+          .catch((err) => {
+            reject(err.response.data);
+          });
+      });
+    },
+    updateProduct(context, payload) {
+      return new Promise((resolve, reject) => {
+        Axios({
+          method: 'put',
+          url: `${this.getters.apiUrl}/products/${payload.id}`,
+          headers: {
+            access_token: context.state.user.access_token,
+          },
+          data: {
+            ...payload,
+          },
+        })
+          .then(({ data }) => {
+            context.commit('updateProduct', data.data);
+            resolve(data.data);
+          })
+          .catch((err) => {
+            reject(err.response.data);
+          });
+      });
+    },
+    deleteProduct(context, payload) {
+      return new Promise((resolve, reject) => {
+        Axios({
+          method: 'delete',
+          url: `${this.getters.apiUrl}/products/${payload.id}`,
+          headers: {
+            access_token: context.state.user.access_token,
+          },
+        })
+          .then(({ data }) => {
+            context.commit('deleteProduct', data.data);
             resolve(data.data);
           })
           .catch((err) => {

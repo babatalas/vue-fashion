@@ -1,18 +1,12 @@
 <template>
   <v-dialog max-width="640px" v-model="dialog">
     <template v-slot:activator="{ on }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-on="on"
-        >
-          Add new product
-        </v-btn>
-      </template>
+      <v-btn class="actions" color="primary" small v-on="on">Edit</v-btn>
+    </template>
     <v-card>
-      <v-card-title><span class="headline">Add a New Product</span></v-card-title>
+      <v-card-title><span class="headline">Edit Product</span></v-card-title>
       <v-card-text>
-        <v-form @submit.prevent="addProduct" ref="productForm">
+        <v-form @submit.prevent="updateProduct" ref="productForm">
           <v-text-field label="Product Name" v-model="product.name"
             prepend-icon="mdi-file-edit" :rules="product.nameRules"
           >
@@ -33,7 +27,7 @@
             prepend-icon="mdi-file-image" :rules="product.imageRules"
           >
           </v-text-field>
-          <v-btn type="submit" :loading="loading" class="success">Save Product</v-btn>
+          <v-btn type="submit" :loading="loading" class="success">Update Product</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -42,50 +36,24 @@
 
 <script>
 export default {
-  name: 'AddProduct',
+  name: 'product-update',
+  props: ['product'],
   data() {
     return {
-      product: {
-        name: '',
-        nameRules: [
-          (v) => !!v || 'Product name is required',
-          (v) => v.length >= 3 || 'Product name must be 3 or more characters',
-        ],
-        description: '',
-        descriptionRules: [
-          (v) => !!v || 'Product description is required',
-          (v) => v.length >= 10 || 'Product description must be 10 or more characters',
-        ],
-        stock: 0,
-        stockRules: [
-          (v) => !!v || 'Total stock is required',
-          (v) => v > 0 || 'Total stock must be greater than 0',
-        ],
-        price: 0,
-        priceRules: [
-          (v) => !!v || 'Product price is required',
-          (v) => v > 1000 || 'Product price must be greater than 1000',
-        ],
-        imageUrl: '',
-        imageRules: [
-          (v) => !!v || 'Product image url is required',
-          (v) => /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(v) || 'Product image url be valid',
-        ],
-      },
-      loading: false,
       dialog: false,
+      loading: false,
     };
   },
   methods: {
-    addProduct() {
+    updateProduct() {
       if (this.$refs.productForm.validate()) {
         console.log(this.product);
         this.loading = true;
-        this.$store.dispatch('addProduct', this.product)
+        this.$store.dispatch('updateProduct', this.product)
           .then((product) => {
             this.dialog = false;
             this.$store.dispatch('showAlert', {
-              message: `${product.name} add successfully`,
+              message: `${product.name} updated successfully`,
               type: 'success',
               snackbar: true,
             });
@@ -99,7 +67,6 @@ export default {
             });
           });
       } else {
-        console.log('snackbar');
         this.$store.dispatch('showAlert', { message: 'Correct your form fields', type: 'error', snackbar: true });
       }
     },

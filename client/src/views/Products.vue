@@ -2,7 +2,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <AddProduct/>
+          <ProductCreate/>
         </v-col>
       </v-row>
 
@@ -29,7 +29,11 @@
                   <td>{{ product.name }}</td>
                   <td>{{ product.price }}</td>
                   <td>{{ product.stock }}</td>
-                  <td>edit | delete</td>
+                  <td>
+                    <v-btn class="actions" small color="success">View Detail</v-btn>
+                    <product-update :product="product" />
+                    <product-delete :product="product" />
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -40,11 +44,13 @@
 </template>
 
 <script>
-import AddProduct from '@/components/AddProduct.vue';
+import ProductCreate from '@/components/ProductCreate.vue';
+import ProductDelete from '@/components/ProductDelete.vue';
+import ProductUpdate from '@/components/ProductUpdate.vue';
 
 export default {
   name: 'Products',
-  components: { AddProduct },
+  components: { ProductCreate, ProductDelete, ProductUpdate },
   data() {
     return {
     };
@@ -62,5 +68,7 @@ export default {
 </script>
 
 <style>
-
+.actions {
+  margin-right: 15px;
+}
 </style>
