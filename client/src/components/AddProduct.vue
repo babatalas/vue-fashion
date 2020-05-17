@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="640px">
+  <v-dialog max-width="640px" v-model="dialog">
     <template v-slot:activator="{ on }">
         <v-btn
           color="red lighten-2"
@@ -33,7 +33,7 @@
             prepend-icon="mdi-file-image" :rules="product.imageRules"
           >
           </v-text-field>
-          <v-btn type="submit" class="success">Save Product</v-btn>
+          <v-btn type="submit" :loading="loading" class="success">Save Product</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
@@ -64,7 +64,7 @@ export default {
         price: 0,
         priceRules: [
           (v) => !!v || 'Product price is required',
-          (v) => v > 0 || 'Product price must be greater than 0',
+          (v) => v > 1000 || 'Product price must be greater than 1000',
         ],
         imageUrl: '',
         imageRules: [
@@ -72,13 +72,32 @@ export default {
           (v) => /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(v) || 'Product image url be valid',
         ],
       },
+      loading: false,
+      dialog: false,
     };
   },
   methods: {
     addProduct() {
       if (this.$refs.productForm.validate()) {
         console.log(this.product);
-        this.$store.dispatch('addProduct', this.product);
+        this.loading = true;
+        this.$store.dispatch('addProduct', this.product)
+          .then((product) => {
+            this.dialog = false;
+            this.$store.dispatch('showAlert', {
+              message: `${product.name} add successfully`,
+              type: 'success',
+              snackbar: true,
+            });
+          })
+          .catch((err) => {
+            this.dialog = false;
+            this.$store.dispatch('showAlert', {
+              message: err.errorCode,
+              type: 'error',
+              snackbar: true,
+            });
+          });
       } else {
         console.log('snackbar');
         this.$store.dispatch('showAlert', { message: 'Correct your form fields', type: 'error', snackbar: true });

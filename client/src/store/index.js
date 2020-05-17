@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apiUrl: 'http://localhost:5000',
+    // apiUrl: 'http://localhost:5000',
+    apiUrl: 'https://eko8-ecommerce-cms.herokuapp.com',
     alert: {
       snackbar: false,
       message: '',
@@ -18,6 +19,9 @@ export default new Vuex.Store({
   mutations: {
     getProducts(state, payload) {
       state.products = payload.data;
+    },
+    addProduct(state, payload) {
+      state.products.push(payload);
     },
     showAlert(state, payload) {
       console.log(state.alert);
@@ -50,11 +54,25 @@ export default new Vuex.Store({
         .catch((err) => console.log(err));
     },
     addProduct(context, payload) {
-      Axios({
-        method: 'post',
-        url: `${this.getters.apiUrl}/products`,
+      return new Promise((resolve, reject) => {
+        Axios({
+          method: 'post',
+          url: `${this.getters.apiUrl}/products`,
+          headers: {
+            access_token: context.state.user.access_token,
+          },
+          data: {
+            ...payload,
+          },
+        })
+          .then(({ data }) => {
+            context.commit('addProduct', data.data);
+            resolve(data.data);
+          })
+          .catch((err) => {
+            reject(err.response.data);
+          });
       });
-      console.log({ context, payload });
     },
     showAlert(context, payload) {
       context.commit('showAlert', payload);
