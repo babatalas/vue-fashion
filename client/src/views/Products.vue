@@ -2,7 +2,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <ProductCreate/>
+          <product-create/>
         </v-col>
       </v-row>
 
@@ -30,7 +30,9 @@
                   <td>{{ product.price }}</td>
                   <td>{{ product.stock }}</td>
                   <td>
-                    <v-btn class="actions" small color="success">View Detail</v-btn>
+                    <v-btn class="actions" small color="success"
+                      :to="{ name: 'Dashboard Products Detail', params: {id: product.id} }"
+                    >View Detail</v-btn>
                     <product-update :product="product" />
                     <product-delete :product="product" />
                   </td>

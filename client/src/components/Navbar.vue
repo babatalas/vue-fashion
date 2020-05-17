@@ -50,7 +50,7 @@ export default {
       {
         icon: 'mdi-view-dashboard',
         text: 'Dashboard',
-        route: '/admin/overview',
+        route: '/admin/',
       },
       {
         icon: 'mdi-view-list',

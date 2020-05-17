@@ -161,6 +161,7 @@ export default new Vuex.Store({
     alert: (state) => state.alert,
     user: (state) => state.user,
     products: (state) => state.products,
+    productById: (state) => (id) => state.products.find((el) => el.id === id),
   },
   modules: {
   },
