@@ -53,7 +53,7 @@ module.exports = (err, req, res, next) => {
     if (error.name === 'JsonWebTokenError') error = handleValidationErrorToken(error)
 
     sendErrProd(error, res)
-  } else if (process.env.NODE_ENV === 'development') {
+  } else {
     sendErrDev(err, res)
   }
 }

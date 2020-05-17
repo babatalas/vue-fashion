@@ -1,16 +1,20 @@
 'use strict';
+const {hashPassword} = require('../helpers')
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
       firstName: 'User',
       lastName: 'Zero',
       email: 'covidkiller@demo.com',
-      password: 'demome',
+      password: await hashPassword('demome'),
       RoleId: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }], {});
+    }], {
+      validate: true, 
+      individualHooks: true,
+    });
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.

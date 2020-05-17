@@ -20,7 +20,8 @@
   "scripts": {
     "generate": "set NODE_ENV=test sequelize db:create && set NODE_ENV=test sequelize db:migrate && set NODE_ENV=test sequelize db:seed --seed 20200512192905-populate-role-for-User && set NODE_ENV=test sequelize db:seed --seed 20200512193005-create-the-first-user-admin",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
-    "win_dev": "nodemon server.js"
+    "win_dev": "nodemon server.js",
+    "start": "set NODE_ENV=development && node app.js"
   },
   "keywords": [],
   "author": "",
