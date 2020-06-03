@@ -1,4 +1,5 @@
 node_modules
+bu-server
 server/config/config.json
 dist
 .env
