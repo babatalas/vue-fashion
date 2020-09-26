@@ -39,7 +39,6 @@ const sendErrProd = (err, res) => {
 }
 
 module.exports = (err, req, res, next) => {
-  console.log(err)
   err.statusCode = err.statusCode || 500
   err.status = err.status || 'error'
   err.message = err.message || 'Something bad happend. It is not our fault. Or maybe it is.'

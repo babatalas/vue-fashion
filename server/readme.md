@@ -9,6 +9,7 @@ This document contains the documentation for [Eko8 Ecommerce CMS](https://eko8-e
 - [Resources](#3-resources)
   - [Root](#31-root)
   - [Products](#32-products)
+  - [Carts](#33-carts)
 - [Testing](#4-testing)
 
 ## 1. Overview
@@ -595,6 +596,73 @@ Content-Type: application/json; charset=utf-8
     "status": "deleted"
   }
 }
+```
+
+### 3.3. Carts
+
+#### Listing or fetching all user's cart items
+
+Returns a full list of produsts that the user want to buy.
+
+```
+GET /carts
+```
+
+Example request:
+
+```
+GET /carts HTTP/1.1
+Host: http://localhost:3000
+Content-Type: application/json
+Accept: application/json
+Accept-Charset: utf-8
+access_token: 498r3y7ewfggjfbhwh4ti58t47ryuergjgfhbs
+```
+
+The response is a list of product objects include Cart object item detail. An empty array is returned if the user doesn’t have any products in their cart.
+
+Example response:
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+  {
+    "id": 8,
+    "name": "Stilo Hijtara Stripe Drawstring Big Blouse",
+    "description": "Bahan tidak panas dan menyerap keringat, namun lebih mudah kusut.",
+    "price": 149000,
+    "stock": 10,
+    "imageUrl": "https://imager-next.ss-cdn.net/images/resized/480/33887d2b-89c4-4727-992f-c5aed29b9366",
+    "createdAt": "2020-05-17T04:40:05.488Z",
+    "updatedAt": "2020-05-17T04:40:05.488Z",
+    "Cart": {
+      "UserId": 1,
+      "ProductId": 8,
+      "quantity": 1,
+      "createdAt": "2020-06-05T05:55:49.225Z",
+      "updatedAt": "2020-06-05T05:55:49.225Z"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Stilo Averrie Texture Button Big Outer",
+    "description": "Outer big size dengan detail pleats di pergelangan tangan, kancing depan dan saku.",
+    "price": 169000,
+    "stock": 20,
+    "imageUrl": "https://imager-next.ss-cdn.net/images/resized/480/6d3154e0-c341-44cd-bc05-78801429e368",
+    "createdAt": "2020-05-17T04:40:05.488Z",
+    "updatedAt": "2020-05-17T04:40:05.488Z",
+    "Cart": {
+      "UserId": 1,
+      "ProductId": 9,
+      "quantity": 1,
+      "createdAt": "2020-06-05T05:55:50.657Z",
+      "updatedAt": "2020-06-05T05:55:50.657Z"
+    }
+  }
+]
 ```
 
 ## 4. Testing
