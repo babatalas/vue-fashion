@@ -6,8 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // apiUrl: 'http://localhost:5000',
-    apiUrl: 'https://eko8-ecommerce-cms.herokuapp.com',
+    apiUrl: 'http://localhost:4000',
+    // apiUrl: 'https://eko8-ecommerce-cms.herokuapp.com',
     alert: {
       snackbar: false,
       message: '',
@@ -163,6 +163,5 @@ export default new Vuex.Store({
     products: (state) => state.products,
     productById: (state) => (id) => state.products.find((el) => el.id === id),
   },
-  modules: {
-  },
+  modules: {},
 });
