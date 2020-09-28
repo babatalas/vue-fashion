@@ -6,104 +6,104 @@ module.exports = {
             "Products",
             [
                 {
-                    name: "Stilo Gra Polkadot Flare Mini Dress",
+                    name: "Ginger scarf",
                     description:
-                        "Mini dress dengan detail kancing belakang, tali serut di pinggang dan karet smocked di tangan.",
+                        "Scarves keep you warm.  Yes, a  practical purpose! Even a lightweight synthetic around your neck will keep you comfortable when it’s breezy –  indoors or out.",
                     stock: 29,
                     price: 190000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/hat.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/ginger-scarf.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Kinsley Plaid Ribbon Mini Dress",
+                    name: "Blue stone mug",
                     description:
-                        "Mini dress drawstring Ribbon dengan detail kancing depan.",
+                        "The Grey Stone mug from House Doctor will add some rustic style to the table. The attractive mug is dishwasher and microwave safe.",
                     stock: 35,
                     price: 129000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/shorts.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/blue-stone-mug.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Corianna Stripe Buckle Mini Dress",
+                    name: "Cerise scallop tee",
                     description: [
-                        "Dress dengan tali buckle ini yang dapat dilepas ini, dapat dikenakan dengan berbagai gaya. Dapat dijadikan outer dan juga dress.",
+                        "Details, A delicately scalloped neckline and elbow-length sleeves bring a graceful touch to our superbly soft pima cotton tee.",
                     ],
                     stock: 29,
                     price: 109000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/bracelet.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/cerise-scallop.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Guillermina Plain Peplum Blouse",
+                    name: "Chambray napkins",
                     description:
-                        "Blouse peplum dengan detail resleting belakang dan pita di lengan.",
+                        "Ultra-soft cotton chambray Montgomery napkins, cocktail napkins, and placemats are finished with with coordinating tonal lettuce edging.",
                     stock: 20,
                     price: 129000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/bullet.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/chambray-napkins.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Nigesha Stripe Buckle Blouse",
+                    name: "Fine lines tee",
                     description:
-                        "Blouse V-neck Stripe dengan detail kancing di manset dan tali buckle di sisi samping.",
+                        "A slightly different take on a classic striped jersey top, the 100% cotton Rae Top from AND/OR comes with ruffle sleeves adding just a hint of girly appeal.",
                     stock: 30,
                     price: 89000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/tshirt.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/fine-lines.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Gayashi Texture Overlap Outer",
+                    name: "Gatsby hat",
                     description:
-                        "Outer Vest dengan detail Kancing depan & Pocket.",
+                        "The homburg is a truly iconic style, more commonly worn in a formal setting, but can also be matched with a more casual attire.",
                     stock: 40,
                     price: 139000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/bag.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/gatsby-hat.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Haolla Plaid Double Pockets Mini Dress",
+                    name: "Vagabond sack",
                     description:
-                        "Mini dress collar dengan detail kancing depan dan fake pockets.",
+                        "Urban style backpack made of black calfskin. The backpack has a comfortable external pocket that closes via a matte black waterproof zip.",
                     stock: 24,
                     price: 159000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/shirt.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/vagabond-sack.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
                 {
-                    name: "Stilo Hijtara Stripe Drawstring Big Blouse",
+                    name: "Walter henley (white)",
                     description:
-                        "Bahan tidak panas dan menyerap keringat, namun lebih mudah kusut.",
+                        "Update your basics wardrobe with practical pieces like this top from Huga. Its solid color fabric is styled with a Henley placket.",
                     stock: 10,
                     price: 149000,
                     imageUrls: [
-                        "https://demos.creative-tim.com/argon-design-system-pro/assets/img/pages/jeans.png",
+                        "https://cdn.glitch.com/a597fe3a-1724-4fcf-8d0c-3a7d4f205d93/walter-henley.jpg",
                     ],
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
             ],
-            {}
+            {},
         );
         /*
       Add altering commands here.

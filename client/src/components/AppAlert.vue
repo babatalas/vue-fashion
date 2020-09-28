@@ -7,10 +7,9 @@
 
 <script>
 export default {
-  name: 'Alert',
+  name: 'AppAlert',
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     alert: {
@@ -22,6 +21,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
